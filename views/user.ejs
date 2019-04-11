@@ -56,6 +56,7 @@
               display: inline-block;
             }
             .column h2{
+              color: black;
               font-size: 35px;
               margin-top: 43px;
             }
@@ -94,52 +95,42 @@
         </style>
     </head>
     <body>
-      <form method="POST" action="/book_profile" id="form" style="display:none;">
-        <input type="text" value="<%= username %>" id="username" name="username" readonly>
-        <input type="text" value="" id="profile" name="profile">
-      </form>
-        <div class="navbar">
-          <a href="/">Home</a>
-          <a href="/contact">Contact</a>
-          <a href="/signup_photographer">Register Photographer</a>
-          <a href="#" class="active" style="float:right">Sign In</a>
-          <a href="/signup_user" class="right" style="float: right">Sign Up</a>
-        </div>
-        <h1>Select Profile to Book Photographer</h1>
-        <div class="row">
+      <div class="navbar">
+        <a href="/dashboard" class="active">Home</a>
+        <a href="/contact">Contact</a>
+        <a href="/logout" class="right" style="float: right">Logout</a>
+      </div>
+      <h1>Select Profile to Book Photographer</h1>
+      <div class="row">
+        <a href="/book_photographer?profile=wedding">
           <div class="column" id="wedding">
             <h2>Wedding</h2>
           </div>
+        </a>
+        <a href="/book_photographer?profile=reception">
           <div class="column" id="reception">
             <h2>Reception</h2>
           </div>
+        </a>
+        <a href="/book_photographer?profile=birthday">
           <div class="column" id="birthday">
             <h2>Birthday</h2>
           </div>
+        </a>
+        <a href="/book_photographer?profile=party">
           <div class="column" id="party">
             <h2>Party</h2>
           </div>
+        </a>
+        <a href="/book_photographer?profile=convocation">
           <div class="column" id="convocation">
             <h2>Convocation</h2>
           </div>
-          <div class="column" style="background-color:#bbb;">
-            <h2>Many more to come</h2>
-            <p>Thanks for your patience</p>
-          </div>
+        </a>
+        <div class="column" style="background-color:#bbb;">
+          <h2>Many more to come</h2>
+          <p>Thanks for your patience</p>
         </div>
+      </div>
     </body>
 </html>
-
-<script>
-  col = document.getElementsByClassName("column");
-  //console.log(col);
-  // col = col[0];
-  // console.log(col);
-  for(i=0; i<col.length; i++){
-    col[i].addEventListener("click",function(e){
-      //console.log(e.target.id);
-      document.getElementById("profile").value = e.target.id;
-      document.getElementById("form").submit();
-    });
-  }
-</script>
