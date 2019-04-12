@@ -151,13 +151,18 @@ app.get("/contact",function(req,res){
 });
 
 app.get("/book_photographer",function(req,res){
+    res.render("book",req.query);
+});
+
+app.get("/search_results",function(req,res){
     console.log(req.query);
+    res.send(String(req.query));
 });
 
 app.get("/logout",function(req,res){
     if(req.session.user && req.cookies.user_sid){
         req.session.destroy();
-        req.clearCookie('user_sid');
+        res.clearCookie('user_sid');
     }
     res.redirect("/");
 });
