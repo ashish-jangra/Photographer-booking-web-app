@@ -38,19 +38,34 @@ const server=app.listen(4000,function(){
 });
 
 app.get("/",function(req,res){
-    if(req.session.user.type == "user")
+    let sql = null;
+    if(req.session.user && req.session.user.type == "user")
         sql = "select * from users where username = '" + req.session.user.username + "' and password = '" + req.session.user.password + "';";
-    else
-    sql = "select * from photographers where username = '" + req.session.user.username + "' and password = '" + req.session.user.password + "';";
-    dbconn.query(sql,function(err,result){
-        console.log("/ request",result);
-        if(result){
-            res.redirect("/dashboard");
-        }
-        else{
-            res.sendFile(__dirname+"/index.html");
-        }
-    });
+    else if(req.session.user && req.session.user.type == "photographer")
+        sql = "select * from photographers where username = '" + req.session.user.username + "' and password = '" + req.session.user.password + "';";
+    console.log("serving home page");
+    if(!sql){
+        res.sendFile(__dirname+"/public/index1.html");
+    }
+    else{
+        dbconn.query(sql,function(err,result){
+            console.log("serving home page",result);
+            if(result){
+                if(req.session.user.type == "user")
+                    res.redirect("/dashboard");
+                else
+                    res.redirect("/photographer/home");
+            }
+            else{
+                res.sendFile(__dirname+"/public/index1.html");
+            }
+        });
+    }
+});
+
+app.get("/photographer",function(req,res){
+    console.log("opened photographer portal");
+    res.sendFile(__dirname+"/public/photographer.html")
 });
 
 app.get("/dashboard",function(req,res){
@@ -66,11 +81,30 @@ app.get("/dashboard",function(req,res){
     }
 });
 
+app.get("/photographer/home",function(req,res){
+    console.log("home page photographer");
+    if(req.session.user && req.session.user.type == "photographer"){
+        sql = "select * from bookings where photographer = '" + req.session.user.username + "';";
+        dbconn.query(sql,function(err,result){
+            if(err){
+                console.log("error for query",sql);
+                res.send("Error");
+            }
+            else{
+                res.render("photographer",{bookings: result});
+            }
+        });
+    }
+    else{
+        res.redirect("/");
+    }
+});
+
 app.get("/signup_user",function(req,res){
     res.sendFile(__dirname+"/public/signup.html");
 });
 
-app.get("/signup_photographer",function(req,res){
+app.get("/photographer/signup",function(req,res){
     res.sendFile(__dirname+"/public/register_photographer.html");
 });
 
@@ -153,23 +187,16 @@ app.post("/login",function(req,res){
     });
 });
 
-app.post("/login_photographer",function(req,res){
+app.post("/photographer/login",function(req,res){
+    console.log("logging in photographer");
     sql = "select * from photographers where username = '" + req.body.username + "' and password = '" + req.body.password + "';";
     dbconn.query(sql,function(err,result){
         if(result){
             req.session.user = {username: req.body.username, password: req.body.password, type: "photographer"};
-            sql = "select * from bookings where photographer = '" + req.body.photographer + "';";
-            dbconn.query(sql,function(err,result){
-                if(err){
-                    res.redirect("/");
-                }
-                else{
-                    res.render("photographer",{bookings: result});
-                }
-            })
+            res.redirect("/photographer/home");
         }
         else{
-            res.redirect("/");
+            res.redirect("/photographer");
         }
     });
 });
@@ -203,8 +230,43 @@ app.get("/search_results",function(req,res){
 });
 
 app.get("/profile",function(req,res){
-    res.send(req.query.username);
+    if(req.session.user && req.cookies.user_sid){
+        sql = "select username, name, email, city, profile, video_charges, photo_charges from photographers where username = '" + req.query.username + "';";
+        dbconn.query(sql,function(err,result){
+            if(err){
+                console.log(sql);
+                res.send("ERROR OCCURRED");
+            }
+            else{
+                res.render("profile",result[0]);
+            }
+        });
+    }
+    else{
+        res.redirect("/");
+    }
 });
+
+app.get("/book",function(req,res){
+    if(req.session.user && req.cookies.user_sid){
+        res.render("make_booking",{user: req.session.user.username, photographer: req.query.username});
+    }
+    else
+        res.redirect("/");
+});
+
+app.post("/make_booking",function(req,res){
+    sql = "insert into bookings values('" + req.body.photographer + "','" + req.body.user + "','" + req.body.function_type + "','" + req.body.album_type + "','" + req.body.album_theme + "','" + req.body.date + "','" + req.body.time + "','" + req.body.venue1 + "','" + req.body.venue2 + "','" + req.body.venue3 + "','pending');";
+    dbconn.query(sql,function(err,result){
+        console.log(sql);
+        if(err){
+            res.redirect("/");
+        }
+        else{
+            res.send("Confirmed booking");
+        }
+    });
+})
 
 app.get("/logout",function(req,res){
     if(req.session.user && req.cookies.user_sid){

@@ -39,56 +39,56 @@
                     width: 100%;
                 }
             }
-            table {
-                border-collapse: collapse;
-                border-spacing: 0;
+
+            .card {
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+                max-width: 300px;
+                margin: auto;
+                text-align: center;
+                font-family: arial;
+            }
+
+            .title {
+                color: grey;
+                font-size: 18px;
+            }
+
+            button {
+                border: none;
+                outline: 0;
+                display: inline-block;
+                padding: 8px;
+                color: white;
+                background-color: #000;
+                text-align: center;
+                cursor: pointer;
                 width: 100%;
-                border: 1px solid #ddd;
+                font-size: 18px;
             }
 
-            th, td {
-                text-align: left;
-                padding: 16px;
-            }
-
-            tr:nth-child(even) {
-                background-color: #f2f2f2
+            button:hover, a:hover {
+                opacity: 0.7;
             }
         </style>
     </head>
     <body>
         <div class="navbar">
-            <a href="/photographer/home" class="active">Home</a>
+            <a href="/">Home</a>
             <a href="/contact">Contact</a>
             <a href="/logout" class="right" style="float: right">Logout</a>
         </div>
-        <table>
-            <tr>
-                <th>User</th>
-                <th>Function type</th>
-                <th>Album type</th>
-                <th>Theme</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Venue1</th>
-                <th>Venue2</th>
-                <th>Venue3</th>
-                <th>Status</th>
-            </tr>
-            <% for (i=0; i < bookings.length; i++) { %>
-                <tr>
-                    <td><%= bookings[i].user %></td>
-                    <td><%= bookings[i].function_type %></td>
-                    <td><%= bookings[i].album_type %></td>
-                    <td><%= bookings[i].album_theme %></td>
-                    <td><%= bookings[i].date.getDate() %>/<%= bookings[i].date.getMonth() %>/<%= bookings[i].date.getFullYear() %></td>
-                    <td><%= bookings[i].time %></td>
-                    <td><%= bookings[i].venue1 %></td>
-                    <td><%= bookings[i].venue2 %></td>
-                    <td><%= bookings[i].venue3 %></td>
-                    <td><%= bookings[i].status %></td>
-                </tr>
-            <% } %>
-        </table> 
+        <h2 style="text-align:center">User Profile Card</h2>
+        <div class="card">
+            <img src="photographer_avatar.jpeg" alt="John" style="width:100%">
+            <h1><%= name %></h1>
+            <p class="title">Expert for <%= profile %>></p>
+            <p><%= email %>></p>
+            <p><button onclick="handleBook('<%= username %>')">Book</button></p>
+        </div>
     </body>
 </html>
+<script>
+    function handleBook(username){
+        window.location = "/book?username=" + username;
+    }
+</script>

@@ -139,34 +139,25 @@
     <body>
         <div>
         <div class="navbar">
-            <a href="/">Home</a>
+            <a href="/" class="active">Home</a>
             <a href="/contact">Contact</a>
-            <a href="/photographer" class="right" style="float: right">Photographer Portal</a>
+            <a href="/photographer/signup" class="right" style="float: right">SignUp</a>
         </div>
         <center>
         <div id="id01" class="modal">
-            <form class="modal-content" action="/make_booking" method="POST">
+            <form class="modal-content" action="/photographer/login" method="POST">
                 <div class="container">
-                <h1>Welcome To Jarvis</h1>
-                <p>You are just a step away from quality Services.</p>
+                <h1>Welcome to Photographer Portal</h1>
                 <hr>
                 <label for="username"><b>Username</b></label>
-                <input id="username" type="text" placeholder="Enter unique username..." name="username">
-
-                <label for="name"><b>Name</b></label>
-                <input id="name" type="text" placeholder="Enter your name..." name="name">
-
-                <label for="email"><b>Email</b></label>
-                <input id="email" type="text" placeholder="Enter your email..." name="email">
-
-                <label for="password"><b>Password</b></label>
-                <input id="password" type="password" placeholder="Enter password..." name="password">
+                <input type="text" id="username" placeholder="Enter Username" name="username" required>
                 
-                <p>By signing up you agree to our <a href="/terms" style="color:dodgerblue">Terms & Privacy</a>.</p>
-            
+                <label for="password"><b>Password</b></label>
+                <input id="venue3" type="password" placeholder="Enter Password" name="password">
+
                 <div class="clearfix">
-                    <button type="button" onclick="window.location = '/'" class="cancelbtn">Cancel</button>
-                    <button type="submit" class="signupbtn"><b>Sign Up</b></button>
+                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                    <button type="submit" class="signupbtn"><b>Login</b></button>
                 </div>
                 </div>
             </form>

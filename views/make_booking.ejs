@@ -141,32 +141,50 @@
         <div class="navbar">
             <a href="/">Home</a>
             <a href="/contact">Contact</a>
-            <a href="/photographer" class="right" style="float: right">Photographer Portal</a>
+            <a href="/logout" class="right" style="float: right">Logout</a>
         </div>
         <center>
         <div id="id01" class="modal">
             <form class="modal-content" action="/make_booking" method="POST">
                 <div class="container">
-                <h1>Welcome To Jarvis</h1>
-                <p>You are just a step away from quality Services.</p>
+                <h1>Book Photographer</h1>
+                <p>Just a step away from quality Services.</p>
                 <hr>
-                <label for="username"><b>Username</b></label>
-                <input id="username" type="text" placeholder="Enter unique username..." name="username">
+                <label for="Photographer"><b>Photographer</b></label>
+                <input type="text" id="Photographer" value="<%= photographer %>" name="photographer" readonly>
 
-                <label for="name"><b>Name</b></label>
-                <input id="name" type="text" placeholder="Enter your name..." name="name">
+                <label for="user"><b>User</b></label>
+                <input id="user" type="text" value="<%= user %>" name="user" readonly>
 
-                <label for="email"><b>Email</b></label>
-                <input id="email" type="text" placeholder="Enter your email..." name="email">
+                <label for="function_type"><b>Function type</b></label>
+                <input id="function_type" type="text" placeholder="Enter function type..." name="function_type">
 
-                <label for="password"><b>Password</b></label>
-                <input id="password" type="password" placeholder="Enter password..." name="password">
+                <label for="album_type"><b>Album type</b></label>
+                <input id="album_type" type="text" placeholder="Enter album type you want" value="abc" name="album_type">
+
+                <label for="album_theme"><b>Album theme</b></label>
+                <input id="album_theme" type="text" placeholder="Enter album theme" value="abc" name="album_theme">
+
+                <label for="date"><b>Date of function</b></label>
+                <input id="date" type="date" value="abc" name="date" required>
+
+                <label for="time"><b>Expected Start Time</b></label>
+                <input id="time" type="time" value="abc" name="time">
+            
+                <label for="venue1"><b>Venue1</b></label>
+                <input id="venue1" type="text" placeholder="Enter Venue1" name="venue1" required>
+            
+                <label for="venue2"><b>Venue2</b></label>
+                <input id="venue2" type="text" placeholder="Enter Venue2" name="venue2">
                 
-                <p>By signing up you agree to our <a href="/terms" style="color:dodgerblue">Terms & Privacy</a>.</p>
+                <label for="venue3"><b>Venue3</b></label>
+                <input id="venue3" type="text" placeholder="Enter Venue3" name="venue3">
+
+                <p>By making a booking you agree to our <a href="/terms" style="color:dodgerblue">Terms & Privacy</a>.</p>
             
                 <div class="clearfix">
                     <button type="button" onclick="window.location = '/'" class="cancelbtn">Cancel</button>
-                    <button type="submit" class="signupbtn"><b>Sign Up</b></button>
+                    <button type="submit" class="signupbtn"><b>Book</b></button>
                 </div>
                 </div>
             </form>
