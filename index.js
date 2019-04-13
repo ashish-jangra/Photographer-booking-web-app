@@ -38,7 +38,10 @@ const server=app.listen(4000,function(){
 });
 
 app.get("/",function(req,res){
-    sql = "select * from users where username = '" + req.session.user.username + "' and password = '" + req.session.user.password + "';";
+    if(req.session.user.type == "user")
+        sql = "select * from users where username = '" + req.session.user.username + "' and password = '" + req.session.user.password + "';";
+    else
+    sql = "select * from photographers where username = '" + req.session.user.username + "' and password = '" + req.session.user.password + "';";
     dbconn.query(sql,function(err,result){
         console.log("/ request",result);
         if(result){
@@ -52,8 +55,11 @@ app.get("/",function(req,res){
 
 app.get("/dashboard",function(req,res){
     console.log("dashbard request",req.session.user);
-    if(req.session.user && req.cookies.user_sid){
+    if(req.session.user && req.cookies.user_sid && req.session.user.type == "user"){
         res.render("user",req.session.user);
+    }
+    else if(req.session.user && req.cookies.user_sid && req.session.user.type == "photographer"){
+        res.render("photographer",req.session.user);
     }
     else{
         res.redirect("/");
@@ -113,7 +119,7 @@ app.post("/register_photographer",function(req,res){
                 res.redirect('/');
             }
             else{
-                sql = "insert into photographers values('" + req.body.username + "','" + req.body.name + "','" + req.body.email + "','" + req.body.password + "','" + req.body.phone + "','" + req.body.address + "','" + req.body.city + "');";
+                sql = "insert into photographers values('" + req.body.username + "','" + req.body.name + "','" + req.body.email + "','" + req.body.password + "','" + req.body.phone + "','" + req.body.address + "','" + req.body.city +"','" + req.body.profile + "');";
                 req.session.user = {username: req.body.username, password: req.body.password};
                 dbconn.query(sql,function(err,result){
                     if(err){
@@ -135,8 +141,9 @@ app.post("/login",function(req,res){
     console.log("login query: "+sql);
     dbconn.query(sql,function(err,result){
         if(result){
+            console.log(result[0]);
             console.log("logged in");
-            req.session.user = {username: req.body.username, password: req.body.password};
+            req.session.user = {username: req.body.username, password: req.body.password, type: "user"};
             res.redirect("/dashboard");        
         }
         else{
@@ -146,8 +153,34 @@ app.post("/login",function(req,res){
     });
 });
 
+app.post("/login_photographer",function(req,res){
+    sql = "select * from photographers where username = '" + req.body.username + "' and password = '" + req.body.password + "';";
+    dbconn.query(sql,function(err,result){
+        if(result){
+            req.session.user = {username: req.body.username, password: req.body.password, type: "photographer"};
+            sql = "select * from bookings where photographer = '" + req.body.photographer + "';";
+            dbconn.query(sql,function(err,result){
+                if(err){
+                    res.redirect("/");
+                }
+                else{
+                    res.render("photographer",{bookings: result});
+                }
+            })
+        }
+        else{
+            res.redirect("/");
+        }
+    });
+});
+
 app.get("/contact",function(req,res){
-    res.render("contact.ejs",req.query);
+    data = {username:req.session.user.username, password:req.session.user.password};
+    console.log('contact from ',data);
+    if(req.session.user && req.cookies.user_sid)
+        res.render("contact",req.session.user);
+    else
+        res.redirect("/");
 });
 
 app.get("/book_photographer",function(req,res){
@@ -156,7 +189,21 @@ app.get("/book_photographer",function(req,res){
 
 app.get("/search_results",function(req,res){
     console.log(req.query);
-    res.send(String(req.query));
+    if(!req.session.user || !req.cookies.user_sid)
+        res.redirect("/");
+    sql = "select * from photographers where profile = '" + req.query.profile + "' and city = '" + req.query.city + "';";
+    dbconn.query(sql,function(err,result){
+        if(err){
+            res.redirect("/");
+        }
+        else{
+            res.render("search",{result: result});
+        }
+    });
+});
+
+app.get("/profile",function(req,res){
+    res.send(req.query.username);
 });
 
 app.get("/logout",function(req,res){

@@ -54,39 +54,45 @@
             tr:nth-child(even) {
                 background-color: #f2f2f2
             }
-
         </style>
     </head>
     <body>
         <div class="navbar">
-            <a href="/">Home</a>
+            <a href="/" class="active">Home</a>
             <a href="/contact">Contact</a>
-            <a href="/logout" class="right" style="float: right">Logout</a>
+            <a href="/logout" class="right" style="float: right">Sign Up</a>
         </div>
-        <h2>Choose Your Photographer</h2>
-        <p>Here's the list of best photographers</p>
-        <table>
-            <tr>
-                <th>Username</th>
-                <th>Name</th>
-                <th>City</th>
-                <th>Video Charges</th>
-                <th>Photo Charges</th>
-            </tr>
-            <% for(i=0;i<result.length;i++){ %>
-                <tr onclick="f('<%= result[i].username %>')">
-                    <td><%= result[i].username %></td>
-                    <td><%= result[i].name %></td>
-                    <td><%= result[i].city %></td>
-                    <td><%= result[i].video_charges %></td>
-                    <td><%= result[i].photo_charges %></td>
+        <% if(bookings.length <= 0) { %>
+            OOPS! No Bookings Yet!
+        <% }
+        else{ %>
+            <table>
+                <tr>
+                    <th>User</th>
+                    <th>Function type</th>
+                    <th>Album type</th>
+                    <th>Theme</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Venue1</th>
+                    <th>Venue2</th>
+                    <th>Venue3</th>
+                    <th>Status</th>
                 </tr>
-            <% } %>
-        </table>
+                <% for (i=0; i < bookings.length; i++) { %>
+                    <tr>
+                        <td>bookings[i].user</td>
+                        <td>bookings[i].function_type</td>
+                        <td>bookings[i].album_type</td>
+                        <td>bookings[i].album_theme</td>
+                        <td>bookings[i].date</td>
+                        <td>bookings[i].time</td>
+                        <td>bookings[i].venue1</td>
+                        <td>bookings[i].venue2</td>
+                        <td>bookings[i].venue3</td>
+                        <td>bookings[i].status</td>
+                    </tr>
+                <% } %>
+            </table>
     </body>
 </html>
-<script>
-    function f(username){
-        window.location = "/profile?username="+username;
-    }
-</script>

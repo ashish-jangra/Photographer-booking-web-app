@@ -3,10 +3,6 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -50,7 +46,7 @@ input[type=submit]:hover {
 
 /* Sticky navbar - toggles between relative and fixed, depending on the scroll position. It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed). The sticky value is not supported in IE or Edge 15 and earlier versions. However, for these versions the navbar will inherit default position */
 .navbar {
-  font-size: 25;
+  font-size: 25px;
   overflow: hidden;
   background-color: #333;
   position: sticky;
@@ -103,8 +99,8 @@ input[type=submit]:hover {
 <body>
     <div class="navbar">
         <a href="/">Home</a>
-        <a href="/contact?username=user">Contact</a>
-        <a href="#" class="active" style="float:right">user</a>
+        <a href="/contact">Contact</a>
+        <a href="/logout" class="active" style="float:right">Logout</a>
     </div>
     <div class="container">
     <div style="text-align:center">
