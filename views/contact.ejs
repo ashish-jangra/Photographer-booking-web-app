@@ -113,17 +113,9 @@ input[type=submit]:hover {
         </div>
         <div class="column">
         <form action="/message for admin">
-            <label for="fname">First Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="Your name..">
-            <label for="lname">Last Name</label>
-            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-            <label for="city">City</label>
-            <select id="city" name="city">
-                <option value="delhi">Delhi</option>
-                <option value="mumbai">Mumbai</option>
-                <option value="chandigarh">Chandigarh</option>
-                <option value="chennai">Chennai</option>
-            </select>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" value="<%= username %>">
+            <input type="text" name="city" placeholder="Enter your city...">
             <label for="subject">Subject</label>
             <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
             <input type="submit" value="Submit">
