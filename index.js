@@ -3,11 +3,12 @@ const bodyparser = require('body-parser');
 const mysql = require('mysql')
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const keys = require('.public/keys');
 
 const dbconn = mysql.createConnection({
     host:'localhost',
     user:'root',
-    password:'',
+    password:keys.root.password,
     database:'pooja'
 }); 
 
