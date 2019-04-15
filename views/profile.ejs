@@ -77,12 +77,21 @@
             <a href="/contact">Contact</a>
             <a href="/logout" class="right" style="float: right">Logout</a>
         </div>
-        <h2 style="text-align:center">User Profile Card</h2>
+        <h2 style="text-align:center">Photographer Profile Card</h2>
         <div class="card">
             <img src="photographer_avatar.jpeg" alt="John" style="width:100%">
             <h1><%= name %></h1>
-            <p class="title">Expert for <%= profile %>></p>
-            <p><%= email %>></p>
+            <p class="title">Expert Photographer for <%= profile %></p>
+            <% if(photo_charges>0) { %>
+                <p>Photo charges: <%= photo_charges %></p>
+            <% }else{ %>
+                <p>Photo charges Not Available</p>
+            <% }if(video_charges>0){ %>
+                <p>Video charges: <%= video_charges %></p>
+            <% }else { %>
+                <p>Video charges Not Available</p>
+            <p>Contact: <%= email %></p>
+            <% } %>
             <p><button onclick="handleBook('<%= username %>')">Book</button></p>
         </div>
     </body>

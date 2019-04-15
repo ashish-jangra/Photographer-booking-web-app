@@ -84,7 +84,7 @@ app.get("/dashboard",function(req,res){
 app.get("/photographer/home",function(req,res){
     console.log("home page photographer");
     if(req.session.user && req.session.user.type == "photographer"){
-        let sql = "select * from bookings where photographer = '" + req.session.user.username + "';";
+        let sql = "select * from bookings where photographer = '" + req.session.user.username + "' order by date;";
         dbconn.query(sql,function(err,result){
             if(err){
                 console.log("error for query",sql);
@@ -238,7 +238,7 @@ app.get("/book_photographer",function(req,res){
 
 app.get("/user/bookings",function(req,res){
     if(req.session.user && req.session.user.type == "user"){
-        let sql = "select * from bookings where user='"+req.session.user.username+"';";
+        let sql = "select * from bookings where user='"+req.session.user.username+"' order by date;";
         dbconn.query(sql,function(err,result){
             if(err){
                 res.redirect("/dashboard");
