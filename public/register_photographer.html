@@ -43,18 +43,17 @@
                 }
             }
             /* Full-width input fields */
-            input[type=text], input[type=password], input[type=date], input[type=time], input[type=tel], input[type=email] {
+            input[type=text], input[type=password], input[type=date], input[type=time], input[type=tel], input[type=email], input[type=number] {
               width: 100%;
               padding: 15px;
               margin: 5px 0 22px 0;
               display: inline-block;
               border: none;
-              text-align: center;
               background: #f1f1f1;
             }
 
             /* Add a background color when the inputs get focus */
-            input[type=text]:focus, input[type=password]:focus, input[type=date]:focus, input[type=time]:focus, input[type=tel], input[type=email] {
+            input[type=text]:focus, input[type=password]:focus, input[type=date]:focus, input[type=time]:focus, input[type=tel], input[type=email], input[type=number] {
               background-color: #ddd;
               outline: none;
             }
@@ -171,57 +170,61 @@
             <a href="/contact">Contact</a>
             <a href="/logout" class="right" style="float: right">Logout</a>
         </div>
-        <center>
         <div id="id01" class="modal">
-            <form class="modal-content" action="/make_booking" method="POST">
-                <div class="container">
-                <h1>Join The <br> Photographers' Community</h1>
-                <hr>
-                <label for="username"><b>Username</b></label>
-                <input type="text" id="username" placeholder="Enter username..." name="username" required>
+          <form class="modal-content" action="/register_photographer" method="POST">
+            <div class="container">
+            <center><h1>Join The <br> Photographers' Community</h1></center>
+            <hr>
+            <label for="username"><b>Username</b></label>
+            <input type="text" id="username" placeholder="Enter username..." name="username" required>
 
-                <label for="name"><b>User</b></label>
-                <input id="name" type="text" placeholder="Enter name..." name="name" required>
+            <label for="name"><b>Name</b></label>
+            <input id="name" type="text" placeholder="Enter name..." name="name" required>
 
-                <label for="email"><b>Email</b></label>
-                <input id="email" type="email" placeholder="Enter email..." name="email" required>
+            <label for="email"><b>Email</b></label>
+            <input id="email" type="email" placeholder="Enter email..." name="email" required>
 
-                <label for="password"><b>Password</b></label>
-                <input id="password" type="password" placeholder="Enter password..." name="password">
+            <label for="password"><b>Password</b></label>
+            <input id="password" type="password" placeholder="Enter password..." name="password">
 
-                <label for="phone"><b>Phone</b></label>
-                <input id="phone" type="tel" placeholder="Enter Contact No." name="phone">
+            <label for="phone"><b>Phone</b></label>
+            <input id="phone" type="tel" placeholder="Enter Contact No." name="phone">
 
-                <label for="address"><b>Address</b></label>
-                <input id="address" type="text" name="address" placeholder="Enter your office address..." required>
+            <label for="address"><b>Address</b></label>
+            <input id="address" type="text" name="address" placeholder="Enter your office address..." required>
 
-                <label for="city"><b>City</b></label>
-                <select id="city" name="city">
-                  <option value="chandigarh">Chandigarh</option>
-                  <option value="delhi">Delhi</option>
-                  <option value="mumbai">Mumbai</option>
-                  <option value="chennai">Chennai</option>
-                </select>
+            <label for="city"><b>City</b></label>
+            <select id="city" name="city">
+              <option value="chandigarh">Chandigarh</option>
+              <option value="delhi">Delhi</option>
+              <option value="mumbai">Mumbai</option>
+              <option value="chennai">Chennai</option>
+            </select>
 
-                <label for="profile"><b>Profile</b></label>
-                <select id="profile" name="profile">
-                  <option value="wedding">Wedding</option>
-                  <option value="reception">Reception</option>
-                  <option value="birthday">Birthday</option>
-                  <option value="party">Party</option>
-                  <option value="convocation">Convocation</option>
-                </select>
-        
-                <p>By Signing up you agree to our <a href="/terms" style="color:dodgerblue">Terms & Privacy</a>.</p>
+            <label for="profile"><b>Profile</b></label>
+            <select id="profile" name="profile">
+              <option value="wedding">Wedding</option>
+              <option value="reception">Reception</option>
+              <option value="birthday">Birthday</option>
+              <option value="party">Party</option>
+              <option value="convocation">Convocation</option>
+            </select>
             
-                <div class="clearfix">
-                    <button type="button" onclick="window.location = '/photographer'" class="cancelbtn">Cancel</button>
-                    <button type="submit" class="signupbtn"><b>Sign Up</b></button>
-                </div>
-                </div>
-            </form>
-        </div>
-    </center>
+            <label for="photo_charges"><b>Photo Charges Per Page</b></label>
+            <input id="photo_charges" type="number" name="photo_charges" value="0">
+
+            <label for="video_charges"><b>Video Charges Per Hour</b></label>
+            <input id="video_charges" type="number" name="video_charges" value="0">
+
+            <p>By Signing up you agree to our <a href="/terms" style="color:dodgerblue">Terms & Privacy</a>.</p>
+        
+            <div class="clearfix">
+                <button type="button" onclick="window.location = '/photographer'" class="cancelbtn">Cancel</button>
+                <button type="submit" class="signupbtn"><b>Sign Up</b></button>
+            </div>
+            </div>
+          </form>
+      </div>
     </div>
     </body>
 </html>
