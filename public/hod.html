@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <style>
+            <body>
+            {box-sizing: border-box;}
+
+           
+            .grid-container {
+  display: grid;
+   justify-content: center;
+  grid-template-columns: 150px 150px 150px 150px;
+  grid-gap: 5px;
+  
+  padding: 3px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid black;
+  text-align: center;
+  font-size: 25px;
+  
+}
+ /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+            @media screen and (max-width: 400px) {
+                .navbar a {
+                    float: none;
+                    width: 100%;
+                }
+            }
+            /* Header/logo Title */
+            .header {
+                padding: 80px;
+                text-align: left;
+                /* background: #1abc9c; */
+                background-image: url("img1.jpg");
+                color: black;
+                background-repeat: no-repeat;
+                background-size: cover;
+                height: 450;
+            }
+
+        </style>
+    </head>
+    <body>
+        <body background ="hj.jpg" style="background: center">
+        <div> 
+        <div class="navbar">
+        <fieldset>
+        <div class="grid-container"
+        <div>    <a href="/" class="active">Home</a>
+            <a href="/hod/signUp"   class="right" style="float: right"> New User</a>
+        </div>
+    </div>
+</fieldset>
+        <div id="id01" class="modal">
+            <form class="modal-content" action="/hod/signup/login" method="POST">
+                <div class="container">
+                <center><h1>Welcome to HEAD OF DEPARTMENT Portal</h1></center>
+                <hr>
+                <center><label for="username"><b>Username</b></label></div></center>
+                <center><input type="text" id="username" placeholder="Enter Username" name="username" required></center><br>
+                
+                <center><label for="password"><b>Password</b></label></center>
+                <center><input id="venue3" type="password" placeholder="Enter Password" name="password">       </center><br>
+
+                <div class="clearfix">
+                    <center><button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                    <button type="submit" class="signupbtn"><b>Login</b></button></center>
+                </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    </body>
+</html>

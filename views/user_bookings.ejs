@@ -1,7 +1,6 @@
 <html>
     <head>
         <style>
-            /* Sticky navbar - toggles between relative and fixed, depending on the scroll position. It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed). The sticky value is not supported in IE or Edge 15 and earlier versions. However, for these versions the navbar will inherit default position */
             .navbar {
                 font-size: 25;
                 overflow: hidden;
@@ -10,8 +9,6 @@
                 position: -webkit-sticky;
                 top: 0;
             }
-
-            /* Style the navigation bar links */
             .navbar a {
                 float: left;
                 display: block;
@@ -20,19 +17,14 @@
                 padding: 14px 20px;
                 text-decoration: none;
             }
-
-            /* Change color on hover */
             .navbar a:hover {
                 background-color: #ddd;
                 color: black;
             }
-
-            /* Active/current link */
             .navbar a.active {
                 background-color: #666;
                 color: white;
             }
-            /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
             @media screen and (max-width: 400px) {
                 .navbar a {
                     float: none;
@@ -62,36 +54,30 @@
     </head>
     <body>
         <div class="navbar">
-            <a href="/photographer/home">Home</a>
+            <a href="/hod/home">Home</a>
             <a href="/contact">Contact</a>
-            <a href="#" class="active">My Bookings</a>
+            <a href="#" class="active">My leave</a>
             <a href="/logout" class="right" style="float: right">Logout</a>
         </div>
         <table>
             <tr>
-                <th>Photographer</th>
-                <th>Function type</th>
-                <th>Album type</th>
-                <th>Theme</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Venue1</th>
-                <th>Venue2</th>
-                <th>Venue3</th>
+                <th>employee_name</th>
+                <th>request_day</th>
+                <th>leave_from</th>
+                <th>leave_to</th>
+                <th>total_days</th>
+                <th>purpose_of_leave</th>
                 <th>Status</th>
             </tr>
-            <% for (i=0; i < bookings.length; i++) { %>
+            <% for (i=0; i < leave.length; i++) { %>
                 <tr>
-                    <td><%= bookings[i].photographer %></td>
-                    <td><%= bookings[i].function_type %></td>
-                    <td><%= bookings[i].album_type %></td>
-                    <td><%= bookings[i].album_theme %></td>
-                    <td><%= bookings[i].date.getDate() %>/<%= bookings[i].date.getMonth() %>/<%= bookings[i].date.getFullYear() %></td>
-                    <td><%= bookings[i].time %></td>
-                    <td><%= bookings[i].venue1 %></td>
-                    <td><%= bookings[i].venue2 %></td>
-                    <td><%= bookings[i].venue3 %></td>
-                    <td><%= bookings[i].status %></td>
+                    <td><%= leaves[i].employee_name %></td>
+                    <td><%= leaves[i].request_day.getDate() %>/<%= leaves[i].request_day.getMonth() %>/<%= leaves[i].request_day.getFullYear() %></td>
+                    <td><%= leaves[i].leave_from.getDate() %>/<%= leaves[i].leave_from.getMonth() %>/<%= leaves[i].date.getFullYear() %></td>
+                    <td><%= leaves[i].leave_to.getDate() %>/<%= leaves[i].leave_to.getMonth() %>/<%= leaves[i].leaves_to.getFullYear() %></td>
+                    <td><%= leaves[i].total_days %></td>
+                    <td><%= leaves[i].purpose_of_leave</td>
+                    <td><%= leaves[i].status %></td>
                 </tr>
             <% } %>
         </table> 

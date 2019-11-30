@@ -1,0 +1,182 @@
+
+<html>
+    <head>
+        <style>
+            body
+            * {box-sizing: border-box;}
+
+            /* Sticky navbar - toggles between relative and fixed, depending on the scroll position. It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed). The sticky value is not supported in IE or Edge 15 and earlier versions. However, for these versions the navbar will inherit default position */
+            .navbar {
+                font-size: 25;
+                overflow: hidden;
+                background-color: #333;
+                position: sticky;
+                position: -webkit-sticky;
+                top: 0;
+            }
+
+            /* Style the navigation bar links */
+            .navbar a {
+                float: left;
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 20px;
+                text-decoration: none;
+            }
+
+            /* Change color on hover */
+            .navbar a:hover {
+                background-color: #ddd;
+                color: black;
+            }
+
+            /* Active/current link */
+            .navbar a.active {
+                background-color: #666;
+                color: white;
+            }
+            /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+            @media screen and (max-width: 400px) {
+                .navbar a {
+                    float: none;
+                    width: 100%;
+                }
+            }
+            /* Full-width input fields */
+            input[type=text], input[type=password], input[type=date], input[type=time] {
+                width: 100%;
+                padding: 15px;
+                margin: 5px 0 22px 0;
+                display: inline-block;
+                border: none;
+                text-align: center;
+                background: #f1f1f1;
+            }
+
+            /* Add a background color when the inputs get focus */
+            input[type=text]:focus, input[type=password]:focus, input[type=date]:focus, input[type=time]:focus {
+                background-color: #ddd;
+                outline: none;
+            }
+
+                /* Set a style for all buttons */
+            button {
+                background-color: #215212;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                width: 100%;
+                opacity: 0.9;
+            }
+
+            button:hover {
+                opacity:1;
+            }
+
+            /* Extra styles for the cancel button */
+            .cancelbtn {
+                padding: 14px 20px;
+                background-color: #666;
+            }
+
+            /* Float cancel and signup buttons and add an equal width */
+            .cancelbtn, .signupbtn {
+                float: left;
+                width: 50%;
+            }
+
+            /* Add padding to container elements */
+            .container {
+                padding: 16px;
+            }
+
+            /* The Modal (background) */
+            .modal {
+                display: block; /* Hidden by default */
+                position: absolute; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                left: 25%;
+                top: 25px;  
+                width: 50%; /* Full width */
+                height: 100%; /* Full height */
+                /* overflow: auto; */
+                padding-top: 50px;
+            }
+
+            /* Modal Content/Box */
+            .modal-content {
+                width: 50%;
+                background-color: #fefefe;
+                margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+                border: 1px solid #888;
+                width: 80%; /* Could be more or less, depending on screen size */
+            }
+
+            /* Style the horizontal ruler */
+            hr {
+                border: 1px solid #f1f1f1;
+                margin-bottom: 25px;
+            }
+                
+
+            /* Clear floats */
+            .clearfix::after {
+                content: "";
+                clear: both;
+                display: table;
+            }
+
+                /* Change styles for cancel button and signup button on extra small screens */
+            @media screen and (max-width: 300px) {
+                .cancelbtn, .signupbtn {
+                    width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+        <div class="navbar">
+            <a href="/">Home</a>
+            <a href="/contact">Contact</a>
+            <a href="/logout" class="right" style="float: right">Logout</a>
+        </div>
+        <center>
+        <div id="id01" class="modal">
+            <form class="modal-content" action="/make_leave" method="POST">
+                <div class="container">
+                <p>Just a step away from quality Services.</p>
+                <hr>
+                <label for="user_name"><b>user_name</b></label>
+                <input type="text" id="user_name" value="<%= user_name%>" name="user_name" readonly>
+
+                <label for="request_date"><b>request_date</b></label>
+                <input id="request_date" type="date" value="<%= request_date %>" name="request_date" readonly>
+
+                <label for="leave_from"><b>leave_from</b></label>
+                <input id="leave_from" type="date" placeholder="leave_from" name="leave_from">
+
+                <label for="leave_to"><b>leave_to</b></label>
+                <input id="leave_to" type="date" placeholder="Enter album type you want" value="abc" name="leave_to">
+
+                <label for="total_days"><b>total_days</b></label>
+                <input id="total_days" type="number" placeholder="total_days"  name="total_days">
+            
+                <label for="purpose_of_leave"><b>purpose_of_leave</b></label>
+                <input id="purpose_of_leave" type="text" placeholder="Enter purpose" name="purpose_of_leave" required>
+            
+                <div class="clearfix">
+                    <button type="button" onclick="window.location = '/'" class="cancelbtn">Cancel</button>
+                    <button type="submit" class="signupbtn"><b>Book</b></button>
+                    
+                </div>
+                </div>
+            </form>
+        </div>
+    </center>
+    </div>
+    </body>
+</html>

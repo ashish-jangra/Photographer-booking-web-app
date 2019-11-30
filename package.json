@@ -1,5 +1,5 @@
 {
-  "name": "photographer-booking-web-app",
+  "name": "onlineleave",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-  	"ejs": "latest",
-  	"express": "latest"
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.4",
+    "ejs": "latest",
+    "express": "^4.16.4",
+    "express-session": "^1.16.1",
+    "mysql": "^2.16.0"
   }
 }

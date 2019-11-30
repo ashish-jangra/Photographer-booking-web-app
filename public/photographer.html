@@ -2,159 +2,52 @@
     <head>
         <style>
             body
-            * {box-sizing: border-box;}
+            {box-sizing: border-box;}
 
-            /* Sticky navbar - toggles between relative and fixed, depending on the scroll position. It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed). The sticky value is not supported in IE or Edge 15 and earlier versions. However, for these versions the navbar will inherit default position */
-            .navbar {
-                font-size: 25;
-                overflow: hidden;
-                background-color: #333;
-                position: sticky;
-                position: -webkit-sticky;
-                top: 0;
-            }
+           
+            .grid-container {
+  display: grid;
+   justify-content: center;
+  grid-template-columns: 150px 150px 150px 150px;
+  grid-gap: 5px;
+  
+  padding: 3px;
+}
 
-            /* Style the navigation bar links */
-            .navbar a {
-                float: left;
-                display: block;
-                color: white;
-                text-align: center;
-                padding: 14px 20px;
-                text-decoration: none;
-            }
-
-            /* Change color on hover */
-            .navbar a:hover {
-                background-color: #ddd;
-                color: black;
-            }
-
-            /* Active/current link */
-            .navbar a.active {
-                background-color: #666;
-                color: white;
-            }
-            /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
-            @media screen and (max-width: 400px) {
-                .navbar a {
-                    float: none;
-                    width: 100%;
-                }
-            }
-            /* Full-width input fields */
-            input[type=text], input[type=password], input[type=date], input[type=time] {
-                width: 100%;
-                padding: 15px;
-                margin: 5px 0 22px 0;
-                display: inline-block;
-                border: none;
-                background: #f1f1f1;
-            }
-
-            /* Add a background color when the inputs get focus */
-            input[type=text]:focus, input[type=password]:focus, input[type=date]:focus, input[type=time]:focus {
-                background-color: #ddd;
-                outline: none;
-            }
-
-                /* Set a style for all buttons */
-            button {
-                background-color: #215212;
-                color: white;
-                padding: 14px 20px;
-                margin: 8px 0;
-                border: none;
-                cursor: pointer;
-                width: 100%;
-                opacity: 0.9;
-            }
-
-            button:hover {
-                opacity:1;
-            }
-
-            /* Extra styles for the cancel button */
-            .cancelbtn {
-                padding: 14px 20px;
-                background-color: #666;
-            }
-
-            /* Float cancel and signup buttons and add an equal width */
-            .cancelbtn, .signupbtn {
-                float: left;
-                width: 50%;
-            }
-
-            /* Add padding to container elements */
-            .container {
-                padding: 16px;
-            }
-
-            /* The Modal (background) */
-            .modal {
-                display: block; /* Hidden by default */
-                position: absolute; /* Stay in place */
-                z-index: 1; /* Sit on top */
-                left: 37%;
-                top: 25px;  
-                width: 30%; /* Full width */
-                height: 100%; /* Full height */
-                /* overflow: auto; */
-                padding-top: 50px;
-            }
-
-            /* Modal Content/Box */
-            .modal-content {
-                width: 100%;
-                background-color: #fefefe;
-                margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-                border: 1px solid #888;
-            }
-
-            /* Style the horizontal ruler */
-            hr {
-                border: 1px solid #f1f1f1;
-                margin-bottom: 25px;
-            }
-                
-
-            /* Clear floats */
-            .clearfix::after {
-                content: "";
-                clear: both;
-                display: table;
-            }
-
-                /* Change styles for cancel button and signup button on extra small screens */
-            @media screen and (max-width: 300px) {
-                .cancelbtn, .signupbtn {
-                    width: 100%;
-                }
-            }
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid black;
+  text-align: center;
+  font-size: 25px;
+}
         </style>
     </head>
     <body>
-        <div>
+        <body background ="hj.jpg" style="background: center">
+        <div> 
         <div class="navbar">
-            <a href="/" class="active">Home</a>
+        <fieldset>
+        <div class="grid-container"
+        <div>    <a href="/" class="active">Home</a>
             <a href="/contact">Contact</a>
-            <a href="/photographer/signup" class="right" style="float: right">SignUp</a>
+            <a href="/photographer/signup"   class="right" style="float: right"> signUp</a>
         </div>
+    </div>
+</fieldset>
         <div id="id01" class="modal">
             <form class="modal-content" action="/photographer/login" method="POST">
                 <div class="container">
                 <center><h1>Welcome to Photographer Portal</h1></center>
                 <hr>
-                <label for="username"><b>Username</b></label>
-                <input type="text" id="username" placeholder="Enter Username" name="username" required>
+                <center><label for="username"><b>Username</b></label></div></center>
+                <center><input type="text" id="username" placeholder="Enter Username" name="username" required></center><br>
                 
-                <label for="password"><b>Password</b></label>
-                <input id="venue3" type="password" placeholder="Enter Password" name="password">
+                <center><label for="password"><b>Password</b></label></center>
+                <center><input id="venue3" type="password" placeholder="Enter Password" name="password">       </center><br>
 
                 <div class="clearfix">
-                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                    <button type="submit" class="signupbtn"><b>Login</b></button>
+                    <center><button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                    <button type="submit" class="signupbtn"><b>Login</b></button></center>
                 </div>
                 </div>
             </form>

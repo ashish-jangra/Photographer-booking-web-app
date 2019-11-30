@@ -40,94 +40,17 @@
                 }
             }
 
-            .row{
-              margin-left: 43px;
-              text-align: center;
-              width: 100%;
-            }
-            .column {
-              margin: 35px;
-              margin-top:30px;
-              float: left;
-              width: 24%;
-              padding: 10px;
-              height: 300px;
-              text-align: center;
-              display: inline-block;
-            }
-            .column h2{
-              color: black;
-              font-size: 35px;
-              margin-top: 43px;
-            }
-            #wedding{
-              background: url("london-wedding2.jpg");
-              background-size: cover;
-            }
-            #reception{
-              background: url("reception.jpg");
-              background-size: cover;
-            }
-            #birthday{
-              background: url("birthday.png");
-              background-size: cover;
-            }
-            #party{
-              background: url("party.jpg");
-              background-size: cover;
-            }
-            #convocation{
-              background: url("convocation.jpg");
-              background-size: cover;
-            }
-            /* Clear floats after the columns */
-            .row:after {
-              content: "";
-              display: table;
-              clear: both;
-            }
-            h1{
-              margin-bottom: 10px;
-              margin-top: 40px;
-              text-align: center;
-              font-size: 35px;
-            }
+            
+        
         </style>
     </head>
     <body>
       <div class="navbar">
         <a href="/dashboard" class="active">Home</a>
         <a href="/contact">Contact</a>
-        <a href="/user/bookings">My Bookings</a>
+        <a href="/employee/leave">My leave</a>
         <a href="/logout" class="right" style="float: right">Logout</a>
       </div>
-      <h1>Select Profile to Book Photographer</h1>
-      <div class="row">
-        <a href="/book_photographer?profile=wedding">
-          <div class="column" id="wedding">
-            <h2>Wedding</h2>
-          </div>
-        </a>
-        <a href="/book_photographer?profile=reception">
-          <div class="column" id="reception">
-            <h2>Reception</h2>
-          </div>
-        </a>
-        <a href="/book_photographer?profile=birthday">
-          <div class="column" id="birthday">
-            <h2>Birthday</h2>
-          </div>
-        </a>
-        <a href="/book_photographer?profile=party">
-          <div class="column" id="party">
-            <h2>Party</h2>
-          </div>
-        </a>
-        <a href="/book_photographer?profile=convocation">
-          <div class="column" id="convocation">
-            <h2>Convocation</h2>
-          </div>
-        </a>
         <div class="column" style="background-color:#bbb;">
           <h2>Many more to come</h2>
           <p>Thanks for your patience</p>

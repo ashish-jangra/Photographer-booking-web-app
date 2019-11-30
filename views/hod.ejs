@@ -1,0 +1,118 @@
+<html>
+    <head>
+        <style>
+            /* Sticky navbar - toggles between relative and fixed, depending on the scroll position. It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed). The sticky value is not supported in IE or Edge 15 and earlier versions. However, for these versions the navbar will inherit default position */
+            .navbar {
+                font-size: 25;
+                overflow: hidden;
+                background-color: #333;
+                position: sticky;
+                position: -webkit-sticky;
+                top: 0;
+            }
+
+            /* St572403196+style the navigation bar links */
+            .navbar a {
+                float: left;
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 20px;
+                text-decoration: none;
+            }
+
+            /* Change color on hover */
+            .navbar a:hover {
+                background-color: #ddd;
+                color: black;
+            }
+
+            /* Active/current link */
+            .navbar a.active {
+                background-color: #666;
+                color: white;
+            }
+            /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+            @media screen and (max-width: 400px) {
+                .navbar a {
+                    float: none;
+                    width: 100%;
+                }
+                tr,td,th{
+                    float: none;
+                    width: 100%;
+                }
+            }
+            table {
+                border-collapse: collapse;
+                border-spacing: 0;
+                width: 100%;
+                border: 1px solid #ddd;
+            }
+
+            th, td {
+                text-align: left;
+                padding: 16px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f2f2f2
+            }
+        </style>
+    </head>
+    <body>
+        <div class="navbar">
+            <a href="/hod/home" class="active">Home</a>
+            <a href="/contact">Contact</a>
+            <a href="/logout" class="right" style="float: right">Logout</a>
+        </div>
+
+
+        <table>
+            <tr>
+                <th>employee_name</th>
+                <th>request_date</th>
+                <th>leave_from</th>
+                <th>leave_to</th>
+                <th>total_days</th>
+                <th>purpose_of_leaves</th>
+                <th>Status</th>
+            </tr>
+            <% for (i=0; i < leave.length; i++) { %>
+                <tr>
+                    <td><%= leave[i].user %></td>
+                    <td><%= leave[i].request_date.getDate() %>/<%= leave[i].request_date.getMonth() %>/<%= leave[i].request_date.getFullYear() %></td>
+                    <td><%= leave[i].leave_from.getDate() %>/<%= leave[i].leave_from.getMonth() %>/<%= leave[i].leave_from.getFullYear() %></td>
+                    <td><%= leave[i].leave_to %></td>
+                    <td><%= leave[i].date.getDate() %>/<%= leave[i].leave_to.getMonth() %>/<%= leave[i].leave_to.getFullYear() %></td>
+                    <td><%= leave[i].total_days%></td>
+                    <td><%= leave[i].purpose_of_leaves %></td>
+                    <td onclick="changeStatus('<%= leaves[i].user %>')" id="<%= leaves[i].user %>"><%= leaves[i].status %></td>
+                </tr>
+            <% } %>
+        </table> 
+    </body>
+</html>
+<script>
+    function changeStatus(user){
+        console.log(user);*
+        el = document.getElementById(user);
+        if(el.innerHTML == "pending"){
+            el.innerHTML = "confirmed";
+            let ajaxrequest = new XMLHttpRequest();
+            let url = "http://localhost:4000/hod/confirm_leaves?user="+user;
+
+
+
+
+            console.log(url);
+            ajaxrequest.open("GET",url);
+            ajaxrequest.send(null);
+            ajaxrequest.onreadystatechange = function(){
+                if(ajaxrequest.readyState == 4){
+                    console.log(ajaxrequest.responseText);
+                }
+            }
+        }
+    }
+</script>
